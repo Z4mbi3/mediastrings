@@ -9,9 +9,7 @@ type video struct {
 
 func NewVideo(file string) video {
 	init := strings.Split(file, ".")
-	video := video{filename: init[0], extension: init[1]}
-
-	return video
+	return video{filename: init[0], extension: init[1]}
 }
 
 func ReturnVideo(file video) string {

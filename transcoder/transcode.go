@@ -1,7 +1,6 @@
 package transcoder
 
 import (
-	"fmt"
 	"os"
 	"os/exec"
 	b64 "encoding/base64"
@@ -17,10 +16,8 @@ func TranscodeVideo(file video) {
 
 	tc := exec.Command(
 		"ffmpeg", "-i", ReturnVideo(file),
-		"-vf", "fps=1", "./assets/" + file.filename + "/" + b64.StdEncoding.EncodeToString([]byte(file.filename)) + "%d.png", 
+		"-vf", "fps=1", "./web/public/" + b64.StdEncoding.EncodeToString([]byte(file.filename)) + "/" + "%d.png", 
 	)
 	tc.Stderr = os.Stderr
 	tc.Run()
-	
-	fmt.Println("Splitting video into frames")
 }
