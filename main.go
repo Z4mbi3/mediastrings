@@ -1,7 +1,7 @@
 package main
 
 import (
-	"vidstrings/ocr"
+	"github.com/Z4mbi3/vidstrings/ocr"
 	// W "vidstrings/web"
 )
 

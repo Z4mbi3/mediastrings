@@ -10,7 +10,7 @@ import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/otiai10/gosseract/v2"
 
-	"vidstrings/env"
+	"github.com/Z4mbi3/vidstrings/env"
 	"io/ioutil"
 )
 
@@ -20,10 +20,12 @@ const (
 )
 
 var computerVisionContext context.Context
+var COMPUTER_VISION_KEY = "COMPUTER_VISION_KEY"
+var ENDPOINT_URL = "ENDPOINT_URL"
 
 func VisionSetup() computervision.BaseClient{
-	computerVisionKey := env.GetEnv("COMPUTER_VISION_KEY")
-	endpointURL := env.GetEnv("ENDPOINT_URL")
+	computerVisionKey := env.GetEnv(COMPUTER_VISION_KEY)
+	endpointURL := env.GetEnv(ENDPOINT_URL)
 
 	computerVisionClient := computervision.New(endpointURL)
 	computerVisionClient.Authorizer = autorest.NewCognitiveServicesAuthorizer(computerVisionKey)
@@ -33,7 +35,7 @@ func VisionSetup() computervision.BaseClient{
 }
 
 func ReadImageSequence(path string, engine string) {
-	// BatchReadFileRemoteImage(computerVisionClient, "http://local-ip/" + directory + "/sequence")
+	// BatchReadFileRemoteImage(VisionSetup(), "http://local-ip/" + directory + "/sequence")
 	switch engine {
 		case Tesseract:
 			images, err := ioutil.ReadDir(path)
@@ -52,20 +54,27 @@ func ReadImageSequence(path string, engine string) {
 func ReadImage(image string, engine string) {
 	switch engine {
 		case Tesseract:
-			fmt.Printf("Reading: %s\n\n", image)
-
-			client := gosseract.NewClient()
-			defer client.Close()
-			client.SetImage(image)
-			text, _ := client.Text()
-			if text == "" {
-				fmt.Println("Could not detect data")
-				return
-			}
-			fmt.Println(text)
+			TesseractReadImage(image)
 		case Azure:
 			BatchReadFileRemoteImage(VisionSetup(), image)
 	}
+}
+
+// --- Engines ---
+
+// Tesseract
+func TesseractReadImage(image string) {
+	fmt.Printf("Reading: %s\n\n", image)
+
+	client := gosseract.NewClient()
+	defer client.Close()
+	client.SetImage(image)
+	text, _ := client.Text()
+	if text == "" {
+		fmt.Println("Could not detect data")
+		return
+	}
+	fmt.Println(text)
 }
 
 // Azure
