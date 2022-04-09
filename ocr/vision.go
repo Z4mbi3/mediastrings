@@ -35,7 +35,6 @@ func VisionSetup() computervision.BaseClient{
 }
 
 func ReadImageSequence(path string, engine string) {
-	// BatchReadFileRemoteImage(VisionSetup(), "http://local-ip/" + directory + "/sequence")
 	switch engine {
 		case Tesseract:
 			images, err := ioutil.ReadDir(path)
@@ -47,7 +46,7 @@ func ReadImageSequence(path string, engine string) {
 			}
 			return
 		case Azure:
-			BatchReadFileRemoteImage(VisionSetup(), path)
+			// Not implemented yet
 	}
 }
 

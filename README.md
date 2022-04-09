@@ -1,8 +1,7 @@
 # Vidstrings
 
-This is an automated OSINT tool, which scrapes images and data from a person of interest's social media. 
-The images get processed with Optical Character Recognition (OCR) trying to find valuable information there.
-This saves a lot of time compared to performing an OSINT investigation manually.
+This is a OCR library for videos and images written in the `Go` language. It currently supports 2 engines (Tesseract and Azure Vision).
 
-## Install
+# Install
 
+1. [tesseract-ocr](https://github.com/tesseract-ocr/tessdoc)
