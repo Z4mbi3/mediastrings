@@ -1,4 +1,4 @@
-module github.com/Z4mbi3/vidstrings
+module github.com/Z4mbi3/mediastrings
 
 go 1.18
 

@@ -10,7 +10,7 @@ import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/otiai10/gosseract/v2"
 
-	"github.com/Z4mbi3/vidstrings/env"
+	"github.com/Z4mbi3/mediastrings/env"
 	"io/ioutil"
 )
 
