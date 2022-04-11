@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	ocr.ReadImage("https://res.cloudinary.com/mike-student/image/upload/v1649150407/test_ks6ffw.png", ocr.Azure)
+	ocr.ReadImage("https://www.exampleimage.com/example.png", ocr.Azure)
 }
