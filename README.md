@@ -34,7 +34,7 @@ func main() {
 }
 ```
 
-## Read Video
+## Read Video (WIP)
 
 The `ReadVideo` method takes a video file and splits it into frames/images, then extracts the text from the sequence of all those frames/images.
 
